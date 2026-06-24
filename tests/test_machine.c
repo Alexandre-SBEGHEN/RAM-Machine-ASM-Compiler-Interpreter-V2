@@ -25,6 +25,16 @@ void test_register_delete() {
     assert(reg == NULL);
 }
 
+void test_memory_create() {
+    Mem* mem = memory_create();
+
+    assert(mem != NULL);
+    for (size_t i = 0; i < mem->size; ++i)
+        assert(mem->data[i] == 0);
+
+    memory_delete(&mem);
+}
+
 int main() {
     test_register_create();
 
