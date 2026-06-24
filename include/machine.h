@@ -44,7 +44,8 @@ struct MemStruct {
  *
  * Valeur initialisée par défaut à 0.
  *
- * @return Pointeur vers la structure allouée.
+ * @return Pointeur vers la structure allouée ou NULL en cas
+ * d'échec d'allocation.
  *
  * @note Penser à libérer la mémoire après utilisation.
  * @see register_delete()
@@ -54,20 +55,17 @@ Reg* register_create();
 /**
  * @brief Libération de mémoire d'une structure Reg.
  *
- * Utilisation d'un double pointeur (adresse du pointeur
- * en paramètre) pour libérer la mémoire puis mettre le
- * pointeur à NULL.
- *
- * @param[in,out] reg Adresse du pointeur vers la structure.
+ * @param[in,out] reg Pointeur vers la structure.
  */
-void register_delete(Reg** reg);
+void register_delete(Reg* reg);
 
 /**
  * @brief Crée dynamiquement une structure mémoire Mem.
  *
  * Valeurs initialisées à 0.
  *
- * @return Pointeur vers la structure allouée.
+ * @return Pointeur vers la structure allouée ou NULL en cas
+ * d'échec d'allocation.
  *
  * @note Penser à libérer la mémoire après utilisation.
  * @see memory_delete()
@@ -77,12 +75,8 @@ Mem* memory_create();
 /**
  * @brief Libération de mémoire d'une structure Mem.
  *
- * Utilisation d'un double pointeur (adresse du pointeur
- * en paramètre) pour libérer la mémoire puis mettre le
- * pointeur à NULL.
- *
- * @param[in,out] mem Adresse du pointeur vers la structure.
+ * @param[in,out] mem Pointeur vers la structure.
  */
-void memory_delete(Mem** mem);
+void memory_delete(Mem* mem);
 
 #endif
