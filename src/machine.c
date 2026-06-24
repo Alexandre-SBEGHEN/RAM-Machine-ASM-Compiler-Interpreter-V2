@@ -9,11 +9,21 @@
 #include "machine.h"
 
 Reg* register_create() {
-    return NULL;
+    Reg* reg;
+
+    // Allocation, return NULL si échec
+    if ((reg = malloc(sizeof(Reg))) == NULL)
+        return NULL;
+
+    // Valeur 0 par défaut
+    reg->val = 0;
+
+    return reg;
 }
 
 void register_delete(Reg* reg) {
-
+    if (reg != NULL)
+        free(reg);
 }
 
 Mem* memory_create() {
