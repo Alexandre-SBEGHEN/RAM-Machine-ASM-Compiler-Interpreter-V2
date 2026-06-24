@@ -4,6 +4,7 @@
  * @author Alexandre SBEGHEN
  * @date 2026-06-24
  */
+
 #include <stdio.h>
 
 int main(void) {
