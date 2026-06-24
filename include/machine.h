@@ -34,6 +34,7 @@ struct RegStruct {
  * Contient un tableau d'entiers de type int32_t.
  */
 struct MemStruct {
+    size_t size;
     int32_t* data;
 };
 
