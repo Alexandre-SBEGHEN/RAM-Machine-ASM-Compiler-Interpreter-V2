@@ -18,6 +18,13 @@ void test_register_create() {
     register_delete(&reg);
 }
 
+void test_register_delete() {
+    Reg* reg = register_create();
+    register_delete(&reg);
+
+    assert(reg == NULL);
+}
+
 int main() {
     test_register_create();
 

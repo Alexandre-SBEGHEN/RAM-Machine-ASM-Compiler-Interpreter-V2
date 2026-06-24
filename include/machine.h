@@ -59,12 +59,8 @@ Reg* register_create();
  * mettre automatiquement sa valeur à NULL.
  *
  * @param[in, out] reg Pointeur vers la structure.
- * @return Adresse de la structure (désormais libérée).
- *
- * @note La fonction renvoie l'adresse de la structure
- * pour s'assurer que tout a bien été libéré.
  */
-Reg* register_delete(Reg** reg);
+void register_delete(Reg** reg);
 
 /**
  * @brief Crée dynamiquement une structure mémoire Mem.
@@ -86,11 +82,7 @@ Mem* memory_create();
  * mettre automatiquement sa valeur à NULL.
  *
  * @param[in, out] mem Pointeur vers la structure.
- * @return Adresse de la structure (désormais libérée).
- *
- * @note La fonction renvoie l'adresse de la structure
- * pour s'assurer que tout a bien été libéré.
  */
-Mem* memory_delete(Mem** mem);
+void memory_delete(Mem** mem);
 
 #endif
