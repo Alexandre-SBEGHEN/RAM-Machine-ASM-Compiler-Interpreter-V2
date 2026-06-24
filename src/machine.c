@@ -21,15 +21,23 @@ Reg* register_create() {
     return reg;
 }
 
-void register_delete(Reg* reg) {
-    if (reg != NULL)
-        free(reg);
+Reg* register_delete(Reg** reg) {
+    if (reg == NULL || *reg == NULL)
+        return NULL;
+
+    free(*reg);
+
+    // Sauvegarder l'adresse de reg puis mettre à NULL
+    Reg* addr = *reg;
+    (*reg) = NULL;
+
+    return addr;
 }
 
 Mem* memory_create() {
     return NULL;
 }
 
-void memory_delete(Mem* mem) {
+Mem* memory_delete(Mem** mem) {
 
 }

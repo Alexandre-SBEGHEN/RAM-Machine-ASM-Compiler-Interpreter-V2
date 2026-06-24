@@ -15,7 +15,7 @@ void test_register_create() {
     assert(reg != NULL);
     assert(reg->val == 0);
 
-    register_delete(reg);
+    register_delete(&reg);
 }
 
 int main() {
