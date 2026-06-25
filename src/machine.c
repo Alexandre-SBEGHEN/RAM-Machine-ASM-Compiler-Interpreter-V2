@@ -5,8 +5,8 @@
  * @date 2026-06-24
  */
 
-#include <stdlib.h>
 #include "machine.h"
+#include <stdlib.h>
 
 /* Création dynamique d'une structure registre Register */
 Register* register_create() {

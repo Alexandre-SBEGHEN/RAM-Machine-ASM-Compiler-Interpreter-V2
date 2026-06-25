@@ -12,6 +12,7 @@
 #ifndef MACHINE_H
 #define MACHINE_H
 
+#include <stddef.h>
 #include <stdint.h>
 
 /* --- Alias --------------------------------------------------------------- */
