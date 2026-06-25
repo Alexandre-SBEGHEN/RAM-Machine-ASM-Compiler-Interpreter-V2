@@ -84,7 +84,14 @@ void test_memory_delete() {
     }
 }
 
-
+/**
+ * @brief Test de la fonction ram_load_direct().
+ *
+ * Vérifie que :
+ * - La valeur chargée dans le registre est la bonne.
+ *
+ * @see ram_load_direct()
+ */
 void test_ram_load_direct() {
     Reg* reg = register_create();
     for (int32_t i = -128; i < 128; ++i) {
@@ -93,6 +100,15 @@ void test_ram_load_direct() {
     }
     register_delete(&reg);
 }
+
+/**
+ * @brief Test de la fonction ram_load_from().
+ *
+ * Vérifie que :
+ * - La valeur chargée dans le registre est la bonne.
+ *
+ * @see ram_load_from()
+ */
 void test_ram_load_from() {
     Reg* reg = register_create();
     Mem* mem = memory_create(8);
@@ -111,6 +127,15 @@ void test_ram_load_from() {
     memory_delete(&mem);
     register_delete(&reg);
 }
+
+/**
+ * @brief Test de la fonction ram_store_to().
+ *
+ * Vérifie que :
+ * - La valeur enregistrée dans la mémoire est la bonne.
+ *
+ * @see ram_store_to()
+ */
 void test_ram_store_to() {
     Reg* reg = register_create();
     Mem* mem = memory_create(8);
@@ -124,6 +149,15 @@ void test_ram_store_to() {
         assert(mem->data[i] == test_values[i]);
     }
 }
+
+/**
+ * @brief Test de la fonction register_increment().
+ *
+ * Vérifie que :
+ * - La valeur enregistrée dans le registre est la bonne.
+ *
+ * @see register_increment()
+ */
 void test_register_increment() {
     Reg* reg = register_create();
 
@@ -142,6 +176,15 @@ void test_register_increment() {
     register_increment(reg);
     assert(reg->val == 10);
 }
+
+/**
+ * @brief Test de la fonction register_decrement().
+ *
+ * Vérifie que :
+ * - La valeur enregistrée dans le registre est la bonne.
+ *
+ * @see register_decrement()
+ */
 void test_register_decrement() {
     Reg* reg = register_create();
 
