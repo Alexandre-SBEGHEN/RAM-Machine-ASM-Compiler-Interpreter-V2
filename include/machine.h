@@ -68,13 +68,14 @@ void register_delete(Reg** reg);
  *
  * Valeurs initialisées à 0.
  *
+ * @param[in] size Taille de la mémoire.
  * @return Pointeur vers la structure allouée ou NULL en cas
  * d'échec d'allocation.
  *
  * @note Penser à libérer la mémoire après utilisation.
  * @see memory_delete()
  */
-Mem* memory_create();
+Mem* memory_create(size_t size);
 
 /**
  * @brief Libération de mémoire d'une structure Mem.

@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "machine.h"
 
+/* Création dynamique d'une structure registre Reg */
 Reg* register_create() {
     Reg* reg;
 
@@ -21,6 +22,7 @@ Reg* register_create() {
     return reg;
 }
 
+/* Libération de mémoire d'une structure Reg */
 void register_delete(Reg** reg) {
     if (reg == NULL || *reg == NULL)
         return;
@@ -29,10 +31,30 @@ void register_delete(Reg** reg) {
     (*reg) = NULL;
 }
 
-Mem* memory_create() {
-    return NULL;
+/* Création dynamique d'une structure mémoire Mem */
+Mem* memory_create(const size_t size) {
+    Mem* mem;
+
+    // Allocation, return NULL si échec
+    if ((mem = malloc(sizeof(Mem))) == NULL)
+        return NULL;
+
+    mem->size = size;
+
+    // Allocation des données, echec -> free reg puis return NULL
+    if ((mem->data = calloc(size, sizeof(int32_t))) == NULL) {
+        free(mem);
+        return NULL;
+    }
+
+    return mem;
 }
 
+/* Libération de mémoire d'une structure Mem */
 void memory_delete(Mem** mem) {
+    if (mem == NULL || *mem == NULL)
+        return;
 
+    free(*mem);
+    (*mem) = NULL;
 }
