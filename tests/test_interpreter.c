@@ -7,6 +7,9 @@
 
 #include <assert.h>
 #include <stddef.h>
+#include <string.h>
+
+#include "machine.h"
 #include "interpreter.h"
 
 /**
@@ -57,17 +60,92 @@ void test_program_delete() {
  * @brief Test de la fonction program_interpret().
  *
  * Exécute plusieurs programmes et vérifie les valeurs de la
- * mémoire et du registre en résultat.
+ * mémoire en résultat.
  *
  * @see program_interpret()
  */
 void test_program_interpret() {
+    Machine* mac = machine_create(2);
+    Program* prog = program_create(16);
 
+    // Programme 1 (a = 1)
+    Instruction progtest_1[3] = {
+        {1, 1},
+        {3, 0},
+        {8, 0}
+    };
+    memcpy(prog->inst, progtest_1, sizeof(progtest_1));
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 1);
+
+    // Programme 2 (a = a + 10)
+    Instruction progtest_2[10] = {
+        {1, -9},
+        {3, 2},
+        {2, 0},
+        {4, 0},
+        {3, 0},
+        {2, 2},
+        {4, 0},
+        {3, 2},
+        {7, 2},
+        {8, 0}
+    };
+    memcpy(prog->inst, progtest_2, sizeof(progtest_2));
+    mac->mem->data[0] = 0;
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 10);
+    mac->mem->data[0] = 5;
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 15);
+    mac->mem->data[0] = -5;
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 5);
+    mac->mem->data[0] = -10;
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 0);
+
+    // Programme 3 (a = |a|)
+    Instruction progtest_3[16] = {
+        {2, 0},
+        {4, 0},
+        {3, 1},
+        {2, 0},
+        {4, 0},
+        {7, 7},
+        {6, 15},
+        {2, 0},
+        {4, 0},
+        {4, 0},
+        {3, 0},
+        {2, 1},
+        {4, 0},
+        {3, 1},
+        {7, 7},
+        {8, 0}
+    };
+    memcpy(prog->inst, progtest_3, sizeof(progtest_3));
+    mac->mem->data[0] = 0;
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 0);
+    mac->mem->data[0] = 5;
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 5);
+    mac->mem->data[0] = -1;
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 1);
+    mac->mem->data[0] = -67;
+    program_interpret(prog, mac);
+    assert(mac->mem->data[0] == 67);
+
+    program_delete(&prog);
+    machine_delete(&mac);
 }
 
 int main() {
     test_program_create();
     test_program_delete();
+    test_program_interpret();
 
     return 0;
 }

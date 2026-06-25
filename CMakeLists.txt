@@ -22,7 +22,7 @@ add_executable(test_machine src/machine.c tests/test_machine.c)
 target_include_directories(test_machine PRIVATE include/)
 add_test(NAME test_machine COMMAND test_machine)
 
-add_executable(test_interpreter src/interpreter.c tests/test_interpreter.c)
+add_executable(test_interpreter src/interpreter.c src/machine.c tests/test_interpreter.c)
 target_include_directories(test_interpreter PRIVATE include/)
 add_test(NAME test_interpreter COMMAND test_interpreter)
 
