@@ -7,6 +7,8 @@
 
 #include <stddef.h>
 #include <assert.h>
+#include <string.h>
+
 #include "machine.h"
 
 /**
@@ -83,11 +85,93 @@ void test_memory_delete() {
 }
 
 
+void test_ram_load_direct() {
+    Reg* reg = register_create();
+    for (int32_t i = -128; i < 128; ++i) {
+        ram_load_direct(reg, i);
+        assert(reg->val == i);
+    }
+    register_delete(&reg);
+}
+void test_ram_load_from() {
+    Reg* reg = register_create();
+    Mem* mem = memory_create(8);
+
+    // Mettre des valeurs dans la mémoire
+    const int32_t test_values[] = {0, 1, 3, 2, -4, -5, 127, -67};
+    memcpy(mem->data, test_values, sizeof(test_values));
+
+    // Tester les valeurs du registre
+    for (int32_t i = 0; i < 8; ++i) {
+        assert(mem->data[i] == test_values[i]);
+        ram_load_from(reg, mem, i);
+        assert(reg->val == mem->data[i]);
+    }
+
+    memory_delete(&mem);
+    register_delete(&reg);
+}
+void test_ram_store_to() {
+    Reg* reg = register_create();
+    Mem* mem = memory_create(8);
+
+    // Valeurs à ranger dans la mémoire
+    const int32_t test_values[] = {0, 1, 3, 2, -4, -5, 127, -67};
+
+    for (int32_t i = 0; i < 8; ++i) {
+        reg->val = test_values[i];
+        ram_store_to(reg, mem, i);
+        assert(mem->data[i] == test_values[i]);
+    }
+}
+void test_register_increment() {
+    Reg* reg = register_create();
+
+    register_increment(reg);
+    assert(reg->val == 1);
+    register_increment(reg);
+    register_increment(reg);
+    assert(reg->val == 3);
+    register_increment(reg);
+    register_increment(reg);
+    register_increment(reg);
+    register_increment(reg);
+    assert(reg->val == 7);
+    register_increment(reg);
+    register_increment(reg);
+    register_increment(reg);
+    assert(reg->val == 10);
+}
+void test_register_decrement() {
+    Reg* reg = register_create();
+
+    register_decrement(reg);
+    assert(reg->val == -1);
+    register_decrement(reg);
+    register_decrement(reg);
+    assert(reg->val == -3);
+    register_decrement(reg);
+    register_decrement(reg);
+    register_decrement(reg);
+    register_decrement(reg);
+    assert(reg->val == -7);
+    register_decrement(reg);
+    register_decrement(reg);
+    register_decrement(reg);
+    assert(reg->val == -10);
+}
+
 int main() {
     test_register_create();
     test_register_delete();
     test_memory_create();
     test_memory_delete();
+
+    test_ram_load_direct();
+    test_ram_load_from();
+    test_ram_store_to();
+    test_register_increment();
+    test_register_decrement();
 
     return 0;
 }
