@@ -102,7 +102,7 @@ void ram_load_direct(Reg* reg, int32_t val);
  * @param[in] mem Pointeur vers la structure Mem.
  * @param[in] index Indice de la case mémoire.
  */
-void ram_load_from(Reg* reg, Mem* mem, size_t index);
+void ram_load_from(Reg* reg, const Mem* mem, size_t index);
 
 /**
  * @brief Rangement du registre vers la mémoire.
@@ -111,7 +111,7 @@ void ram_load_from(Reg* reg, Mem* mem, size_t index);
  * @param[out] mem Pointeur vers la structure Mem.
  * @param[in] index Indice de la case mémoire.
  */
-void ram_store_to(Reg* reg, Mem* mem, size_t index);
+void ram_store_to(const Reg* reg, Mem* mem, size_t index);
 
 /**
  * @brief Incrémente de 1 la valeur du registre Reg.
