@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 /* Création dynamique d'une structure registre Register */
-Program* program_create(size_t number_of_instructions) {
+Program* program_create(size_t size) {
     return NULL;
 }
 

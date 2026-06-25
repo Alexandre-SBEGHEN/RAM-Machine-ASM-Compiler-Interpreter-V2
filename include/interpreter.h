@@ -49,14 +49,14 @@ struct ProgramStruct {
  *
  * Valeurs de la matrice initialisées par défaut à 0.
  *
- * @param[in] number_of_instructions Nombre d'instructions du programme.
+ * @param[in] size Nombre d'instructions (=taille) du programme.
  * @return Pointeur vers la structure allouée ou NULL en cas
  * d'échec d'allocation.
  *
  * @note Penser à libérer la mémoire après utilisation.
  * @see program_delete()
  */
-Program* program_create(size_t number_of_instructions);
+Program* program_create(size_t size);
 
 /**
  * @brief Libération de mémoire d'une structure Program.
