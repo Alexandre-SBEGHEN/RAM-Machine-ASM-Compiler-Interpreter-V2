@@ -8,8 +8,16 @@
 #include <stddef.h>
 #include <assert.h>
 #include "machine.h"
-#include "stdio.h"
 
+/**
+ * @brief Test de la fonction register_create().
+ *
+ * Vérifie que :
+ * - Le registre créé n'est pas NULL ;
+ * - Sa valeur est initialisée à 0.
+ *
+ * @see register_create()
+ */
 void test_register_create() {
     Reg* reg = register_create();
 
@@ -19,6 +27,14 @@ void test_register_create() {
     register_delete(&reg);
 }
 
+/**
+ * @brief Test de la fonction register_delete().
+ *
+ * Vérifie que :
+ * - Le pointeur est défini à NULL.
+ *
+ * @see register_delete()
+ */
 void test_register_delete() {
     Reg* reg = register_create();
     register_delete(&reg);
@@ -26,11 +42,22 @@ void test_register_delete() {
     assert(reg == NULL);
 }
 
+/**
+ * @brief Test de la fonction memory_create().
+ *
+ * Vérifie que :
+ * - La mémoire créée n'est pas NULL ;
+ * - Son champ size est correct ;
+ * - Toutes ses données sont initalisées à 0.
+ *
+ * @see memory_create()
+ */
 void test_memory_create() {
     for (size_t size = 0; size < 128; ++size) {
         Mem* mem = memory_create(size);
 
         assert(mem != NULL);
+        assert(mem->size == size);
         for (size_t i = 0; i < size; i++)
             assert(mem->data[i] == 0);
 
@@ -38,6 +65,14 @@ void test_memory_create() {
     }
 }
 
+/**
+ * @brief Test de la fonction memory_delete().
+ *
+ * Vérifie que :
+ * - Le pointeur est défini à NULL.
+ *
+ * @see memory_delete()
+ */
 void test_memory_delete() {
     for (size_t size = 0; size < 128; ++size) {
         Mem* mem = memory_create(18);
