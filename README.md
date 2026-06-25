@@ -23,7 +23,7 @@ mémoire infinie, d’un registre unique, et d’une unité arithmétique et log
 un entier, ou de le comparer à zéro.
 
 <p align="center">
-    <img src="assets/images/schema_machine_ram.png" alt="Schéma de la machine RAM" width="350">
+    <img style="mix-blend-mode: difference;" src="assets/images/schema_machine_ram.png" alt="Schéma de la machine RAM" width="350">
 </p>
 
 Cette machine est équipée du jeu d'instructions suivant :
