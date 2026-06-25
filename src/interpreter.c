@@ -34,3 +34,8 @@ void program_delete(Program** prog) {
     free(*prog);
     *prog = NULL;
 }
+
+/* Exécution d'un programme compilé */
+int program_interpret(const Program* prog, Machine* mac) {
+    return 0;
+}

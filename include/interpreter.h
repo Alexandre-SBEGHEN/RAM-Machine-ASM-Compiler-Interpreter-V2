@@ -15,6 +15,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#include "machine.h"
+
 /* --- Alias --------------------------------------------------------------- */
 
 typedef struct InstructionStruct Instruction;
@@ -67,5 +69,14 @@ Program* program_create(size_t size);
  * @param[in, out] prog Adresse du pointeur vers la structure.
  */
 void program_delete(Program** prog);
+
+/**
+ * @brief Interprète un programme compilé sous la forme d'une structure Program.
+ *
+ * @param prog Pointeur vers la structure Program.
+ * @param mac Pointeur vers la structure Machine.
+ * @return 0 en cas de réussite, autre valeur en cas d'échec.
+ */
+int program_interpret(const Program* prog, Machine* mac);
 
 #endif
