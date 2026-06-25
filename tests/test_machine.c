@@ -21,7 +21,7 @@
  * @see register_create()
  */
 void test_register_create() {
-    Reg* reg = register_create();
+    Register* reg = register_create();
 
     assert(reg != NULL);
     assert(reg->val == 0);
@@ -38,7 +38,7 @@ void test_register_create() {
  * @see register_delete()
  */
 void test_register_delete() {
-    Reg* reg = register_create();
+    Register* reg = register_create();
     register_delete(&reg);
 
     assert(reg == NULL);
@@ -56,7 +56,7 @@ void test_register_delete() {
  */
 void test_memory_create() {
     for (size_t size = 0; size < 128; ++size) {
-        Mem* mem = memory_create(size);
+        Memory* mem = memory_create(size);
 
         assert(mem != NULL);
         assert(mem->size == size);
@@ -77,7 +77,7 @@ void test_memory_create() {
  */
 void test_memory_delete() {
     for (size_t size = 0; size < 128; ++size) {
-        Mem* mem = memory_create(18);
+        Memory* mem = memory_create(18);
         memory_delete(&mem);
 
         assert(mem == NULL);
@@ -93,7 +93,7 @@ void test_memory_delete() {
  * @see ram_load_direct()
  */
 void test_ram_load_direct() {
-    Reg* reg = register_create();
+    Register* reg = register_create();
     for (int32_t i = -128; i < 128; ++i) {
         ram_load_direct(reg, i);
         assert(reg->val == i);
@@ -110,8 +110,8 @@ void test_ram_load_direct() {
  * @see ram_load_from()
  */
 void test_ram_load_from() {
-    Reg* reg = register_create();
-    Mem* mem = memory_create(8);
+    Register* reg = register_create();
+    Memory* mem = memory_create(8);
 
     // Mettre des valeurs dans la mémoire
     const int32_t test_values[] = {0, 1, 3, 2, -4, -5, 127, -67};
@@ -137,8 +137,8 @@ void test_ram_load_from() {
  * @see ram_store_to()
  */
 void test_ram_store_to() {
-    Reg* reg = register_create();
-    Mem* mem = memory_create(8);
+    Register* reg = register_create();
+    Memory* mem = memory_create(8);
 
     // Valeurs à ranger dans la mémoire
     const int32_t test_values[] = {0, 1, 3, 2, -4, -5, 127, -67};
@@ -159,7 +159,7 @@ void test_ram_store_to() {
  * @see register_increment()
  */
 void test_register_increment() {
-    Reg* reg = register_create();
+    Register* reg = register_create();
 
     register_increment(reg);
     assert(reg->val == 1);
@@ -186,7 +186,7 @@ void test_register_increment() {
  * @see register_decrement()
  */
 void test_register_decrement() {
-    Reg* reg = register_create();
+    Register* reg = register_create();
 
     register_decrement(reg);
     assert(reg->val == -1);
