@@ -59,7 +59,7 @@ Reg* register_create();
  * Utilisation du double pointeur en paramètre pour
  * mettre automatiquement sa valeur à NULL.
  *
- * @param[in, out] reg Pointeur vers la structure.
+ * @param[in, out] reg Adresse du pointeur vers la structure.
  */
 void register_delete(Reg** reg);
 
@@ -83,7 +83,7 @@ Mem* memory_create(size_t size);
  * Utilisation du double pointeur en paramètre pour
  * mettre automatiquement sa valeur à NULL.
  *
- * @param[in, out] mem Pointeur vers la structure.
+ * @param[in, out] mem Adresse du pointeur vers la structure.
  */
 void memory_delete(Mem** mem);
 
