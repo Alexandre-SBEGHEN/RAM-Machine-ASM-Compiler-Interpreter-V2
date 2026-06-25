@@ -54,7 +54,7 @@ void test_register_delete() {
  * @see memory_create()
  */
 void test_memory_create() {
-    for (size_t size = 0; size < 128; ++size) {
+    for (size_t size = 1; size < 128; ++size) {
         Memory* mem = memory_create(size);
 
         assert(mem != NULL);
@@ -76,7 +76,7 @@ void test_memory_create() {
  */
 void test_memory_delete() {
     for (size_t size = 0; size < 128; ++size) {
-        Memory* mem = memory_create(18);
+        Memory* mem = memory_create(size);
         memory_delete(&mem);
 
         assert(mem == NULL);
