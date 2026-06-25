@@ -8,7 +8,6 @@
 #include <stddef.h>
 #include <assert.h>
 #include <string.h>
-
 #include "machine.h"
 
 /**
