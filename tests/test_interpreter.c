@@ -14,8 +14,9 @@
  *
  * Vérifie que :
  * - Le registre créé n'est pas NULL ;
- * - Ses champs ne sont pas NULL ;
- * - Les valeurs de la matrice sont initialisées à 0.
+ * - Sa taille est correcte ;
+ * - Sa liste d'instructions n'est pas NULL ;
+ * - Les op/arg des instructions sont nuls.
  *
  * @see program_create()
  */
@@ -24,13 +25,12 @@ void test_program_create() {
         Program* prog = program_create(size);
 
         assert(prog != NULL);
-        assert(prog->instructions != NULL);
-        assert(prog->data != NULL);
-        for (size_t i = 0; i < size; ++i)
-            assert(
-                prog->instructions[i][0] == 0 &&
-                prog->instructions[i][1] == 0
-            );
+        assert(prog->size == size);
+        assert(prog->inst != NULL);
+        for (size_t i = 0; i < prog->size; ++i) {
+            assert(prog->inst[i].op == 0);
+            assert(prog->inst[i].arg == 0);
+        }
 
         program_delete(&prog);
     }
