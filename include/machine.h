@@ -14,12 +14,12 @@
 
 #include <stdint.h>
 
-/* --- Alias ---------------------------------------------------- */
+/* --- Alias --------------------------------------------------------------- */
 
 typedef struct RegStruct Reg;
 typedef struct MemStruct Mem;
 
-/* --- Structs -------------------------------------------------- */
+/* --- Structs ------------------------------------------------------------- */
 
 /**
  * @brief Structure du registre.
@@ -38,7 +38,7 @@ struct MemStruct {
     int32_t* data;
 };
 
-/* --- Fonctions ------------------------------------------------ */
+/* --- Fonctions ----------------------------------------------------------- */
 
 /**
  * @brief Crée dynamiquement une structure registre Reg.
