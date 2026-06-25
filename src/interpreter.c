@@ -10,10 +10,27 @@
 
 /* Création dynamique d'une structure registre Register */
 Program* program_create(size_t size) {
-    return NULL;
+    Program* prog;
+
+    if ((prog = malloc(sizeof(Program))) == NULL)
+        return NULL;
+
+    prog->size = size;
+
+    if ((prog->inst = malloc(size * sizeof(Instruction))) == NULL) {
+        free(prog);
+        return NULL;
+    }
+
+    return prog;
 }
 
-/* Création dynamique d'une structure mémoire Memory */
+/* Libération de mémoire d'une structure Program */
 void program_delete(Program** prog) {
+    if (prog == NULL || *prog == NULL)
+        return;
 
+    free((*prog)->inst);
+    free(*prog);
+    *prog = NULL;
 }
