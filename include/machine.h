@@ -87,4 +87,44 @@ Mem* memory_create(size_t size);
  */
 void memory_delete(Mem** mem);
 
+/**
+ * @brief Chargement direct du registre.
+ *
+ * @param[out] reg Pointeur vers la structure Reg.
+ * @param[in] val Valeur à charger dans le registre.
+ */
+void ram_load_direct(Reg* reg, int32_t val);
+
+/**
+ * @brief Chargement du registre depuis la mémoire.
+ *
+ * @param[out] reg Pointeur vers la structure Reg.
+ * @param[in] mem Pointeur vers la structure Mem.
+ * @param[in] index Indice de la case mémoire.
+ */
+void ram_load_from(Reg* reg, Mem* mem, size_t index);
+
+/**
+ * @brief Rangement du registre vers la mémoire.
+ *
+ * @param[in] reg Pointeur vers la structure Reg.
+ * @param[out] mem Pointeur vers la structure Mem.
+ * @param[in] index Indice de la case mémoire.
+ */
+void ram_store_to(Reg* reg, Mem* mem, size_t index);
+
+/**
+ * @brief Incrémente de 1 la valeur du registre Reg.
+ *
+ * @param[out] reg Pointeur vers la structure Reg.
+ */
+void register_increment(Reg* reg);
+
+/**
+ * @brief Décrémente de 1 la valeur du registre Reg.
+ *
+ * @param[out] reg Pointeur vers la structure Reg.
+ */
+void register_decrement(Reg* reg);
+
 #endif
