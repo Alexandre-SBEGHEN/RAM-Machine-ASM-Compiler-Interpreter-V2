@@ -75,7 +75,7 @@ L'interpréteur parcourt ensuite ce tableau séquentiellement, en exécutant cha
 - [x] Instructions de base (load, store, increment, decrement)
 - [ ] Compilateur
 - [ ] Gestion des étiquettes (compilation)
-- [ ] Fichier binaire -> structure Program exploitable par l'interpréteur
-- [ ] Interpréteur
-- [ ] Prise en charge des sauts (interpréteur)
+- [ ] Fichier binaire → structure Program exploitable par l'interpréteur
+- [x] Interpréteur
+- [x] Prise en charge des sauts (interpréteur)
 - [ ] Interface utilisateur
