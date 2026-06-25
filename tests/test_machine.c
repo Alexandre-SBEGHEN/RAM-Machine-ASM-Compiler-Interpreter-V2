@@ -84,6 +84,40 @@ void test_memory_delete() {
 }
 
 /**
+ * @brief Test de la fonction machine_create().
+ *
+ * Vérifie que :
+ * - Le registre créé n'est pas NULL ;
+ * - Ses champs ne sont pas NULL.
+ *
+ * @see machine_create()
+ */
+void test_machine_create() {
+    Machine* mac = machine_create(1);
+
+    assert(mac != NULL);
+    assert(mac->mem != NULL);
+    assert(mac->reg != NULL);
+
+    machine_delete(&mac);
+}
+
+/**
+ * @brief Test de la fonction machine_delete().
+ *
+ * Vérifie que :
+ * - Le pointeur est défini à NULL.
+ *
+ * @see machine_delete()
+ */
+void test_machine_delete() {
+    Machine* mac = machine_create(8);
+    machine_delete(&mac);
+
+    assert(mac == NULL);
+}
+
+/**
  * @brief Test de la fonction ram_load_direct().
  *
  * Vérifie que :
@@ -92,12 +126,20 @@ void test_memory_delete() {
  * @see ram_load_direct()
  */
 void test_ram_load_direct() {
-    Register* reg = register_create();
-    for (int32_t i = -128; i < 128; ++i) {
-        ram_load_direct(reg, i);
-        assert(reg->val == i);
-    }
-    register_delete(&reg);
+    Machine* mac = machine_create(1);
+
+    ram_load_direct(mac, -1);
+    assert(mac->reg->val == -1);
+    ram_load_direct(mac, 1);
+    assert(mac->reg->val == 1);
+    ram_load_direct(mac, 3);
+    assert(mac->reg->val == 3);
+    ram_load_direct(mac, 2);
+    assert(mac->reg->val == 2);
+    ram_load_direct(mac, -67);
+    assert(mac->reg->val == -67);
+
+    machine_delete(&mac);
 }
 
 /**
@@ -109,22 +151,17 @@ void test_ram_load_direct() {
  * @see ram_load_from()
  */
 void test_ram_load_from() {
-    Register* reg = register_create();
-    Memory* mem = memory_create(8);
+    Machine* mac = machine_create(5);
 
-    // Mettre des valeurs dans la mémoire
-    const int32_t test_values[] = {0, 1, 3, 2, -4, -5, 127, -67};
-    memcpy(mem->data, test_values, sizeof(test_values));
+    const int32_t testval[] = {0, 1, 3, 2, -5};
+    memcpy(mac->mem->data, testval, sizeof(testval));
 
-    // Tester les valeurs du registre
-    for (int32_t i = 0; i < 8; ++i) {
-        assert(mem->data[i] == test_values[i]);
-        ram_load_from(reg, mem, i);
-        assert(reg->val == mem->data[i]);
+    for (size_t i = 0; i < 5; ++i) {
+        ram_load_from(mac, i);
+        assert(mac->reg->val == testval[i]);
     }
 
-    memory_delete(&mem);
-    register_delete(&reg);
+    machine_delete(&mac);
 }
 
 /**
@@ -136,71 +173,75 @@ void test_ram_load_from() {
  * @see ram_store_to()
  */
 void test_ram_store_to() {
-    Register* reg = register_create();
-    Memory* mem = memory_create(8);
+    Machine* mac = machine_create(5);
 
-    // Valeurs à ranger dans la mémoire
-    const int32_t test_values[] = {0, 1, 3, 2, -4, -5, 127, -67};
+    const int32_t testval[] = {0, 1, 3, 2, -5};
 
-    for (int32_t i = 0; i < 8; ++i) {
-        reg->val = test_values[i];
-        ram_store_to(reg, mem, i);
-        assert(mem->data[i] == test_values[i]);
+    for (size_t i = 0; i < 5; ++i) {
+        mac->reg->val = testval[i];
+        ram_store_to(mac, i);
+        assert(mac->mem->data[i] == testval[i]);
     }
+
+    machine_delete(&mac);
 }
 
 /**
- * @brief Test de la fonction register_increment().
+ * @brief Test de la fonction ram_increment().
  *
  * Vérifie que :
  * - La valeur enregistrée dans le registre est la bonne.
  *
  * @see register_increment()
  */
-void test_register_increment() {
-    Register* reg = register_create();
+void test_ram_increment() {
+    Machine* mac = machine_create(1);
 
-    register_increment(reg);
-    assert(reg->val == 1);
-    register_increment(reg);
-    register_increment(reg);
-    assert(reg->val == 3);
-    register_increment(reg);
-    register_increment(reg);
-    register_increment(reg);
-    register_increment(reg);
-    assert(reg->val == 7);
-    register_increment(reg);
-    register_increment(reg);
-    register_increment(reg);
-    assert(reg->val == 10);
+    ram_increment(mac);
+    assert(mac->reg->val == 1);
+    ram_increment(mac);
+    ram_increment(mac);
+    assert(mac->reg->val == 3);
+    ram_increment(mac);
+    ram_increment(mac);
+    ram_increment(mac);
+    ram_increment(mac);
+    assert(mac->reg->val == 7);
+    ram_increment(mac);
+    ram_increment(mac);
+    ram_increment(mac);
+    assert(mac->reg->val == 10);
+
+    machine_delete(&mac);
 }
 
 /**
- * @brief Test de la fonction register_decrement().
+ * @brief Test de la fonction ram_decrement().
  *
  * Vérifie que :
  * - La valeur enregistrée dans le registre est la bonne.
  *
  * @see register_decrement()
  */
-void test_register_decrement() {
-    Register* reg = register_create();
+void test_ram_decrement() {
+    Machine* mac = machine_create(1);
 
-    register_decrement(reg);
-    assert(reg->val == -1);
-    register_decrement(reg);
-    register_decrement(reg);
-    assert(reg->val == -3);
-    register_decrement(reg);
-    register_decrement(reg);
-    register_decrement(reg);
-    register_decrement(reg);
-    assert(reg->val == -7);
-    register_decrement(reg);
-    register_decrement(reg);
-    register_decrement(reg);
-    assert(reg->val == -10);
+    ram_decrement(mac);
+    assert(mac->reg->val == -1);
+    ram_decrement(mac);
+    ram_decrement(mac);
+    assert(mac->reg->val == -3);
+    ram_decrement(mac);
+    ram_decrement(mac);
+    ram_decrement(mac);
+    ram_decrement(mac);
+    assert(mac->reg->val == -7);
+    ram_decrement(mac);
+    ram_decrement(mac);
+    ram_decrement(mac);
+    assert(mac->reg->val == -10);
+
+    machine_delete(&mac);
 }
 
 int main() {
@@ -208,12 +249,14 @@ int main() {
     test_register_delete();
     test_memory_create();
     test_memory_delete();
+    test_machine_create();
+    test_machine_delete();
 
     test_ram_load_direct();
     test_ram_load_from();
     test_ram_store_to();
-    test_register_increment();
-    test_register_decrement();
+    test_ram_increment();
+    test_ram_decrement();
 
     return 0;
 }

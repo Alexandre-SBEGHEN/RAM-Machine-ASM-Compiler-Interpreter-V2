@@ -59,30 +59,59 @@ void memory_delete(Memory** mem) {
     (*mem) = NULL;
 }
 
+/* Création dynamique d'une structure machine Machine */
+Machine* machine_create(const size_t memsize) {
+    Machine* mac;
+
+    if ((mac = malloc(sizeof(Machine))) == NULL)
+        return NULL;
+
+    if ((mac->mem = memory_create(memsize)) == NULL) {
+        free(mac);
+        return NULL;
+    }
+
+    if ((mac->reg = register_create()) == NULL) {
+        memory_delete(&mac->mem);
+        free(mac);
+        return NULL;
+    }
+
+    return mac;
+}
+
+/* Libération de mémoire d'une structure Machine */
+void machine_delete(Machine** mac) {
+    if (mac == NULL || *mac == NULL)
+        return;
+
+    memory_delete(&(*mac)->mem);
+    register_delete(&(*mac)->reg);
+    free(*mac);
+    (*mac) = NULL;
+}
+
 /* Chargement direct du registre */
-void ram_load_direct(Register* reg, const int32_t val) {
-    if (reg != NULL)
-        reg->val = val;
+void ram_load_direct(Machine* mac, int32_t val) {
+    mac->reg->val = val;
 }
 
 /* Chargement du registre depuis la mémoire */
-void ram_load_from(Register* reg, const Memory* mem, const size_t index) {
-    if (reg != NULL && mem != NULL)
-        reg->val = mem->data[index];
+void ram_load_from(Machine* mac, size_t index) {
+    mac->reg->val = mac->mem->data[index];
 }
 
 /* Rangement du registre vers la mémoire */
-void ram_store_to(const Register* reg, Memory* mem, const size_t index) {
-    if (reg != NULL && mem != NULL)
-        mem->data[index] = reg->val;
+void ram_store_to(Machine* mac, size_t index) {
+    mac->mem->data[index] = mac->reg->val;
 }
 
 /* Incrémentation du registre */
-void register_increment(Register* reg) {
-    reg->val += 1;
+void ram_increment(Machine* mac) {
+    mac->reg->val += 1;
 }
 
 /* Décrémentation du registre */
-void register_decrement(Register* reg) {
-    reg->val -= 1;
+void ram_decrement(Machine* mac) {
+    mac->reg->val -= 1;
 }
