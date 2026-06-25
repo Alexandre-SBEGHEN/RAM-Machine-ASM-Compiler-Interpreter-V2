@@ -61,25 +61,28 @@ void memory_delete(Mem** mem) {
 
 /* Chargement direct du registre */
 void ram_load_direct(Reg* reg, const int32_t val) {
-
+    if (reg != NULL)
+        reg->val = val;
 }
 
 /* Chargement du registre depuis la mémoire */
 void ram_load_from(Reg* reg, const Mem* mem, const size_t index) {
-
+    if (reg != NULL && mem != NULL)
+        reg->val = mem->data[index];
 }
 
 /* Rangement du registre vers la mémoire */
 void ram_store_to(const Reg* reg, Mem* mem, const size_t index) {
-
+    if (reg != NULL && mem != NULL)
+        mem->data[index] = reg->val;
 }
 
 /* Incrémentation du registre */
 void register_increment(Reg* reg) {
-
+    reg->val += 1;
 }
 
 /* Décrémentation du registre */
 void register_decrement(Reg* reg) {
-
+    reg->val -= 1;
 }
