@@ -17,18 +17,29 @@
 
 /* --- Alias --------------------------------------------------------------- */
 
+typedef struct InstructionStruct Instruction;
 typedef struct ProgramStruct Program;
 
 /* --- Structs ------------------------------------------------------------- */
 
 /**
+ * @brief Structure d'une instruction.
+ * Contient deux champs opération et argument/opérande
+ */
+struct InstructionStruct {
+    int32_t op;
+    int32_t arg;
+};
+
+/**
  * @brief Structure du programme compilé.
- * C'est une matrice de N lignes (nb instructions)
- * et 2 colonnes (instruction/argument).
+ * Champs:
+ * - size : nombre d'instructions
+ * - inst : tableau de structures d'instructions Instruction
  */
 struct ProgramStruct {
-    int32_t** instructions; // Adresses des lignes de la matrice
-    int32_t* data; // Données de la matrice (contiguës)
+    size_t size;
+    Instruction* inst;
 };
 
 /* --- Fonctions ----------------------------------------------------------- */
