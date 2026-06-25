@@ -67,7 +67,16 @@ section précédente. À la lecture, le fichier est chargé en mémoire sous la 
 représentant un tableau de N lignes et 2 colonnes, où N est le nombre d'instructions du programme.
 
 L'interpréteur parcourt ensuite ce tableau séquentiellement, en exécutant chaque instruction sur la machine RAM
-(registre + mémoire), jusqu'à rencontrer l'instruction `HALT`.
+(registre + mémoire), jusqu'à rencontrer l'instruction `HALT`. Si l'exécution du programme réussit, la fonction qui
+interprète le programme renvoie la valeur 0. Sinon, elle renvoie un code d'erreur.
+
+### Codes d'erreur de l'interpréteur
+
+| Code | Signification |
+|-|-|
+| 0 | Aucune erreur |
+| 1 | Overflow, index de lecture en dehors du programme (`<0` OU `>= taille`) |
+| 2 | Instruction inconnue |
 
 ## Progression
 
