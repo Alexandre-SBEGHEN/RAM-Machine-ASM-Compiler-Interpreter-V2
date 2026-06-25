@@ -59,11 +59,11 @@ L'interpréteur parcourt ensuite ce tableau séquentiellement, en exécutant cha
 
 ## Progression
 
-- [ ] Machine RAM (mémoire + registre)
-- [ ] Instructions de base (load, store, increment, decrement)
+- [x] Machine RAM (mémoire + registre)
+- [x] Instructions de base (load, store, increment, decrement)
 - [ ] Compilateur
+- [ ] Gestion des étiquettes (compilation)
 - [ ] Fichier binaire -> structure Program exploitable par l'interpréteur
 - [ ] Interpréteur
-- [ ] Gestion des étiquettes (compilation)
 - [ ] Prise en charge des sauts (interpréteur)
 - [ ] Interface utilisateur
