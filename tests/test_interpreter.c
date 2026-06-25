@@ -53,6 +53,18 @@ void test_program_delete() {
     }
 }
 
+/**
+ * @brief Test de la fonction program_interpret().
+ *
+ * Exécute plusieurs programmes et vérifie les valeurs de la
+ * mémoire et du registre en résultat.
+ *
+ * @see program_interpret()
+ */
+void test_program_interpret() {
+
+}
+
 int main() {
     test_program_create();
     test_program_delete();
