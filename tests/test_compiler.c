@@ -92,6 +92,8 @@ void test_string_clean() {
     char* str_8 = string_clean(" # ");
     char* str_9 = string_clean("   #");
     char* str_10 = string_clean("#     ");
+    char* str_11 = string_clean("  STORE #-67;   # commentaire");
+    char* str_12 = string_clean("  ####    z");
     assert(strcmp(str_1, "") == 0);
     assert(strcmp(str_2, "") == 0);
     assert(strcmp(str_3, "etiquette:") == 0);
@@ -102,6 +104,8 @@ void test_string_clean() {
     assert(strcmp(str_8, "") == 0);
     assert(strcmp(str_9, "") == 0);
     assert(strcmp(str_10, "") == 0);
+    assert(strcmp(str_11, "STORE #-67;") == 0);
+    assert(strcmp(str_12, "") == 0);
 }
 
 int main() {

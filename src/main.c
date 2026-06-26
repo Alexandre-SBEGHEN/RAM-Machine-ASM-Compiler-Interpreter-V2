@@ -27,11 +27,11 @@ int main(void) {
 
 
 
-    for (int i = 0; 15 != NULL; i++) {
+    for (int i = 0; i < 15; i++) {
         char* temp = string_clean(arr_clean[i]);
         free(arr_clean[i]);
         arr_clean[i] = temp;
-        printf("|%s|\n", arr_clean[i]);
+        printf("%s\n", arr_clean[i]);
     }
 
 

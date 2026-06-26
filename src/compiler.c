@@ -118,7 +118,7 @@ char* string_clean(char* str) {
 
     // Cropper à droite (commentaires)
     for (trim = len - 1; trim > 0 && copy[trim] != '#'; --trim);
-    if (trim > 0)
+    if ((trim > 0) && !(trim >= 2 && copy[trim-2] == 'D'))
         copy[trim] = '\0';
 
     len = strlen(copy);
