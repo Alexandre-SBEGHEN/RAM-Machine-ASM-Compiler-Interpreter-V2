@@ -10,7 +10,7 @@
 #include "interpreter.h"
 
 int main(void) {
-    Program* prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/a_equals_abs_of_a.bin");
+    Program* prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/test_a_equals_abs_of_a.bin");
 
     if (prog == NULL)
         printf("erreur\n");

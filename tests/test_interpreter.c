@@ -154,7 +154,7 @@ void test_file_bin_to_program() {
     Program* prog;
 
     // Programme 1 (a = 1)
-    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/a_equals_1.bin");
+    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/test_a_equals_1.bin");
     assert(prog != NULL);
     Instruction progtest_1[3] = {
         {1, 1},
@@ -168,7 +168,7 @@ void test_file_bin_to_program() {
     program_delete(&prog);
 
     // Programme 2 (a = a + 10)
-    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/a_equals_a_plus_10.bin");
+    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/test_a_equals_a_plus_10.bin");
     assert(prog != NULL);
     Instruction progtest_2[10] = {
         {1, -9},
@@ -189,7 +189,7 @@ void test_file_bin_to_program() {
     program_delete(&prog);
 
     // Programme 3 (a = |a|)
-    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/a_equals_abs_of_a.bin");
+    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/test_a_equals_abs_of_a.bin");
     assert(prog != NULL);
     Instruction progtest_3[16] = {
         {2, 0},
