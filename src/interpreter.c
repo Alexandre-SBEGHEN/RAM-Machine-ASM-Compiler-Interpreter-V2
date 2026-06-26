@@ -6,6 +6,7 @@
  */
 
 #include "interpreter.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 /* Création dynamique d'une structure registre Register */
@@ -105,5 +106,51 @@ int program_interpret(const Program* prog, Machine* mac) {
 
 /* Création d'un programme à partir d'un fichier .bin */
 Program* file_bin_to_program(const char* filename) {
-    return NULL;
+    FILE* file = fopen(filename, "rb");
+    if (file == NULL)
+        return NULL;
+
+    //Vérifier que le fichier contient des blocs de 8 octets (paire instruction / opérande)
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+    if (file_size % 8 != 0) return NULL;
+
+
+
+    // Le nombre d'instructions est la taille du fichier / 8
+    long number_of_instructions = file_size / 8;
+    Program* prog = program_create(number_of_instructions);
+    if (prog == NULL) return NULL;
+
+    // Encodage des instructions
+    for (long i = 0; i < number_of_instructions; ++i) {
+        // On place chaque "partie" (octet) du nombre dans un buffer
+        unsigned char instbytes[4], argbytes[4];
+        if (fread(instbytes, 1, 4, file) != 4 || fread(argbytes, 1, 4, file) != 4) {
+            program_delete(&prog);
+            return NULL;
+        }
+
+        // On concatène les parties pour obtenir le grand nombre (4 octets)
+        int32_t inst = (int32_t)(
+            (int32_t)instbytes[0] << 24 |
+            (int32_t)instbytes[1] << 16 |
+            (int32_t)instbytes[2] << 8 |
+            (int32_t)instbytes[3]
+        );
+        int32_t arg = (int32_t)(
+            (int32_t)argbytes[0] << 24 |
+            (int32_t)argbytes[1] << 16 |
+            (int32_t)argbytes[2] << 8 |
+            (int32_t)argbytes[3]
+        );
+
+        // On encode inst et arg dans le programme
+        prog->inst[i].op = inst;
+        prog->inst[i].arg = arg;
+    }
+
+    fclose(file);
+    return prog;
 }
