@@ -9,7 +9,7 @@ main:
         LOAD @2;
         INCR;
         STORE @2;
-
+        
         JZ for;
         
         HALT;

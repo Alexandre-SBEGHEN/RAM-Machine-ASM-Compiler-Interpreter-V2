@@ -8,19 +8,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "machine.h"
 #include "compiler.h"
 #include "interpreter.h"
 
 int main(void) {
-    char* str = string_clean("   ");
+    char *str = file_to_string(PROJECT_ROOT "/examples/asm/a_equals_a_plus_10.asm");
+    char** arr = string_to_array(str);
+    char** arr_clean = string_to_array(str);
 
-    printf("length : ");
-    printf("%lu\n", strlen(str));
-    printf("|%s|\n", str);
+    // printf("|%s|\n————————————————————\n", str);
 
+    /*
+    for (int i = 0; i < 15; i++)
+            printf("|%s|\n", arr[i]);
+    printf("————————————————————\n");
+    */
+
+
+
+    for (int i = 0; 15 != NULL; i++) {
+        char* temp = string_clean(arr_clean[i]);
+        free(arr_clean[i]);
+        arr_clean[i] = temp;
+        printf("|%s|\n", arr_clean[i]);
+    }
+
+
+    free(arr_clean);
+    free(arr);
     free(str);
-
     return 0;
 }
