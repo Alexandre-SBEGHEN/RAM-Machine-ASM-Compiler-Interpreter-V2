@@ -79,4 +79,15 @@ void program_delete(Program** prog);
  */
 int program_interpret(const Program* prog, Machine* mac);
 
+/**
+ * @brief Génère une structure Program à partir d'un fichier binaire (asm compilé).
+ *
+ * @param filename Chemin vers le fichier.
+ * @return Pointeur vers la structure Program, NULL en cas d'échec.
+ *
+ * @note Penser à libérer la mémoire après utilisation.
+ * @see program_delete()
+ */
+Program* file_bin_to_program(const char* filename);
+
 #endif

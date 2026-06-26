@@ -102,3 +102,8 @@ int program_interpret(const Program* prog, Machine* mac) {
         ++inst_index;
     }
 }
+
+/* Création d'un programme à partir d'un fichier .bin */
+Program* file_bin_to_program(const char* filename) {
+    return NULL;
+}

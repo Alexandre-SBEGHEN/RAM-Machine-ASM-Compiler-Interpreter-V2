@@ -142,10 +142,23 @@ void test_program_interpret() {
     machine_delete(&mac);
 }
 
+/**
+ * @brief Test de la fonction file_bin_to_program().
+ *
+ * Lit plusieurs fichiers et vérifie que la structure générée
+ * en résultat est la bonne.
+ *
+ * @see file_bin_to_program()
+ */
+void test_file_bin_to_program() {
+
+}
+
 int main() {
     test_program_create();
     test_program_delete();
     test_program_interpret();
+    test_file_bin_to_program();
 
     return 0;
 }
