@@ -84,7 +84,7 @@ interprète le programme renvoie la valeur 0. Sinon, elle renvoie un code d'erre
 - [x] Instructions de base (load, store, increment, decrement)
 - [ ] Compilateur
 - [ ] Gestion des étiquettes (compilation)
-- [ ] Fichier binaire → structure Program exploitable par l'interpréteur
+- [x] Fichier binaire → structure Program exploitable par l'interpréteur
 - [x] Interpréteur
 - [x] Prise en charge des sauts (interpréteur)
-- [ ] Interface utilisateur
+- [ ] Interface utilisateur (terminal)

@@ -116,8 +116,6 @@ Program* file_bin_to_program(const char* filename) {
     rewind(file);
     if (file_size % 8 != 0) return NULL;
 
-
-
     // Le nombre d'instructions est la taille du fichier / 8
     long number_of_instructions = file_size / 8;
     Program* prog = program_create(number_of_instructions);
