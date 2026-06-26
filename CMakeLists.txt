@@ -27,4 +27,4 @@ target_include_directories(test_interpreter PRIVATE include/)
 add_test(NAME test_interpreter COMMAND test_interpreter)
 
 # Variables
-add_compile_definitions(ROOT_DIR="${CMAKE_SOURCE_DIR}")
+add_compile_definitions(PROJECT_ROOT="${CMAKE_SOURCE_DIR}")
