@@ -14,8 +14,8 @@
 /**
  * @brief Récupère le contenu d'un fichier dans une string.
  *
- * @param[in] filename Chemin vers le fichier
- * @return Pointeur vers la string, NULL en cas d'échec
+ * @param[in] filename Chemin vers le fichier.
+ * @return Pointeur vers la string, NULL en cas d'échec.
  *
  * @note Cette fonction effectue une allocation dynamique
  * de mémoire, penser à libérer la mémoire avec free().
@@ -23,12 +23,12 @@
 char* file_to_string(const char* filename);
 
 /**
- * @brief Découpe une string en tableau de lignes
+ * @brief Découpe une string en tableau de lignes.
  *
- * Le séparateur est donc le caractère Retour à la ligne '\\n'
+ * Le séparateur est donc le caractère Retour à la ligne '\\n'.
  *
- * @param[in] str La string à découper
- * @return Pointeur vers le tableau de strings
+ * @param[in] str La string à découper.
+ * @return Pointeur vers le tableau de strings, NULL en cas d'échec.
  *
  * @note Cette fonction effectue une allocation dynamique
  * de mémoire, penser à libérer la mémoire avec free().
@@ -41,9 +41,9 @@ char** string_to_array(const char* str);
  * Les modifications suivantes sont apportées :
  * - Les lignes commençant par # sont remplacées par '\\0' ;
  * - Les espaces/tabulations en début de ligne sont supprimées ;
- * - Les caractères après un point virgule ';' sont remplacés par '\\0'
+ * - Les caractères après un point virgule ';' sont remplacés par '\\0'.
  *
- * @param[in, out] str Ligne à nettoyer
+ * @param[in, out] str Ligne à nettoyer.
  *
  * @note Cette fonction effectue des modifications sur la ligne passée
  * en paramètre, pas besoin de faire un free() en aval.
