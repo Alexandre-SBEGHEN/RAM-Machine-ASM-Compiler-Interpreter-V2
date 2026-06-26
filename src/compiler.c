@@ -93,5 +93,41 @@ char** string_to_array(const char* str) {
 
 /* Nettoyage d'une ligne de code */
 char* string_clean(char* str) {
+    char* copy = strdup(str);
+    if (copy == NULL)
+        return NULL;
 
+    if (strlen(copy) == 0)
+        return copy;
+
+    // Cropper à gauche
+    size_t trim;
+    size_t len = strlen(copy);
+    for (trim = 0; trim < len && (copy[trim] == ' ' || copy[trim] == '\t'); ++trim);
+    memmove(copy, copy + trim, strlen(copy) - trim + 1);
+
+    // Commence par commentaire
+    if (copy[0] == '#') {
+        copy[0] = '\0';
+        return copy;
+    }
+
+    len = strlen(copy);
+    if (len == 0)
+        return copy;
+
+    // Cropper à droite (commentaires)
+    for (trim = len - 1; trim > 0 && copy[trim] != '#'; --trim);
+    if (trim > 0)
+        copy[trim] = '\0';
+
+    len = strlen(copy);
+    if (len == 0)
+        return copy;
+
+    // Cropper à droite (espaces)
+    for (trim = len - 1; trim > 0 && (copy[trim] == ' ' || copy[trim] == '\t'); --trim);
+    copy[trim+1] = '\0';
+
+    return copy;
 }

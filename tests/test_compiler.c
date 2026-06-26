@@ -87,11 +87,21 @@ void test_string_clean() {
     char* str_3 = string_clean("etiquette: #commentaire");
     char* str_4 = string_clean("   HALT;      ");
     char* str_5 = string_clean("   STORE @0;      # commentaire");
+    char* str_6 = string_clean("    ");
+    char* str_7 = string_clean("");
+    char* str_8 = string_clean(" # ");
+    char* str_9 = string_clean("   #");
+    char* str_10 = string_clean("#     ");
     assert(strcmp(str_1, "") == 0);
     assert(strcmp(str_2, "") == 0);
     assert(strcmp(str_3, "etiquette:") == 0);
     assert(strcmp(str_4, "HALT;") == 0);
     assert(strcmp(str_5, "STORE @0;") == 0);
+    assert(strcmp(str_6, "") == 0);
+    assert(strcmp(str_7, "") == 0);
+    assert(strcmp(str_8, "") == 0);
+    assert(strcmp(str_9, "") == 0);
+    assert(strcmp(str_10, "") == 0);
 }
 
 int main() {
