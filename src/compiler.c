@@ -92,6 +92,6 @@ char** string_to_array(const char* str) {
 }
 
 /* Nettoyage d'une ligne de code */
-void string_clean(char* str) {
+char* string_clean(char* str) {
 
 }

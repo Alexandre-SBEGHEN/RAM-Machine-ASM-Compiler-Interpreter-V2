@@ -44,10 +44,11 @@ char** string_to_array(const char* str);
  * - Les caractères après un point virgule ';' sont remplacés par '\\0'.
  *
  * @param[in, out] str Ligne à nettoyer.
+ * @return Pointeur vers le tableau de strings, NULL en cas d'échec.
  *
- * @note Cette fonction effectue des modifications sur la ligne passée
- * en paramètre, pas besoin de faire un free() en aval.
+ * @note Cette fonction effectue une allocation dynamique
+ * de mémoire, penser à libérer la mémoire avec free().
  */
-void string_clean(char* str);
+char* string_clean(char* str);
 
 #endif

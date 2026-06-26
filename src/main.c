@@ -13,19 +13,13 @@
 #include "interpreter.h"
 
 int main(void) {
-    const char* str = "Bonjour tout le monde !\nCeci est un paragraphe simple,\ntrès très simple...\nHihihi";
-    char** array = string_to_array(str);
+    char* str = "# commentaire";
 
-    char strtest_1[4][50] = {
-        "Bonjour tout le monde !",
-        "Ceci est un paragraphe simple,",
-        "très très simple...",
-        "Hihihi"
-    };
+    string_clean(str);
 
-    for (size_t i = 0; i < 4; ++i) {
-        printf("%s\t\t%s\t\t%d\n", array[i], strtest_1[i], strcmp(array[i], strtest_1[i]));
-    }
+    printf("length : ");
+    printf("%lu\n", strlen(str));
+    printf("|%s|\n", str);
 
 
 

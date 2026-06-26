@@ -82,16 +82,11 @@ void test_string_to_array() {
  * @see string_clean()
  */
 void test_string_clean() {
-    char* str_1 = "# commentaire";
-    char* str_2 = "     # espace et commentaire";
-    char* str_3 = "etiquette: #commentaire";
-    char* str_4 = "   HALT;      ";
-    char* str_5 = "   STORE @0;      # commentaire";
-    string_clean(str_1);
-    string_clean(str_2);
-    string_clean(str_3);
-    string_clean(str_4);
-    string_clean(str_5);
+    char* str_1 = string_clean("# commentaire");
+    char* str_2 = string_clean("     # espace et commentaire");
+    char* str_3 = string_clean("etiquette: #commentaire");
+    char* str_4 = string_clean("   HALT;      ");
+    char* str_5 = string_clean("   STORE @0;      # commentaire");
     assert(strcmp(str_1, "") == 0);
     assert(strcmp(str_2, "") == 0);
     assert(strcmp(str_3, "etiquette:") == 0);
@@ -102,7 +97,7 @@ void test_string_clean() {
 int main() {
     test_file_to_string();
     test_string_to_array();
-    //test_string_clean();
+    test_string_clean();
 
     return 0;
 }
