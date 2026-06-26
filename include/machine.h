@@ -1,5 +1,5 @@
 /**
-* @file machine.h
+ * @file machine.h
  * @brief Machine RAM
  *
  * Allocation, suppression, gestion d'une

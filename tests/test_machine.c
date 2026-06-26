@@ -3,7 +3,7 @@
  * @brief Test des implémentations de machine.h / machine.c
  * @author Alexandre SBEGHEN
  * @date 2026-06-24
-*/
+ */
 
 #include <stddef.h>
 #include <assert.h>

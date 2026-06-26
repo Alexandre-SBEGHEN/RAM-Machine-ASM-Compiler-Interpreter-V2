@@ -3,7 +3,7 @@
  * @brief Test des implémentations de interpreter.h / interpreter.c
  * @author Alexandre SBEGHEN
  * @date 2026-06-25
-*/
+ */
 
 #include <assert.h>
 #include <stddef.h>
