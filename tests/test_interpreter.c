@@ -151,7 +151,69 @@ void test_program_interpret() {
  * @see file_bin_to_program()
  */
 void test_file_bin_to_program() {
+    Program* prog;
 
+    // Programme 1 (a = 1)
+    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/a_equals_1.bin");
+    assert(prog != NULL);
+    Instruction progtest_1[3] = {
+        {1, 1},
+        {3, 0},
+        {8, 0}
+    };
+    for (size_t i = 1; i < prog->size; ++i) {
+        assert(prog->inst[i].op == progtest_1[i].op);
+        assert(prog->inst[i].arg == progtest_1[i].arg);
+    }
+    program_delete(&prog);
+
+    // Programme 2 (a = a + 10)
+    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/a_equals_a_plus_10.bin");
+    assert(prog != NULL);
+    Instruction progtest_2[10] = {
+        {1, -9},
+        {3, 2},
+        {2, 0},
+        {4, 0},
+        {3, 0},
+        {2, 2},
+        {4, 0},
+        {3, 2},
+        {7, 2},
+        {8, 0}
+    };
+    for (size_t i = 1; i < prog->size; ++i) {
+        assert(prog->inst[i].op == progtest_2[i].op);
+        assert(prog->inst[i].arg == progtest_2[i].arg);
+    }
+    program_delete(&prog);
+
+    // Programme 3 (a = |a|)
+    prog = file_bin_to_program(PROJECT_ROOT "/tests/testdata/a_equals_abs_of_a.bin");
+    assert(prog != NULL);
+    Instruction progtest_3[16] = {
+        {2, 0},
+        {4, 0},
+        {3, 1},
+        {2, 0},
+        {4, 0},
+        {7, 7},
+        {6, 15},
+        {2, 0},
+        {4, 0},
+        {4, 0},
+        {3, 0},
+        {2, 1},
+        {4, 0},
+        {3, 1},
+        {7, 7},
+        {8, 0}
+    };
+    for (size_t i = 1; i < prog->size; ++i) {
+        assert(prog->inst[i].op == progtest_3[i].op);
+        assert(prog->inst[i].arg == progtest_3[i].arg);
+    }
+    program_delete(&prog);
 }
 
 int main() {
