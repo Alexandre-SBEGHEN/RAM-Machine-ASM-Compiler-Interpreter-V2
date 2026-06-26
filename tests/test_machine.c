@@ -1,5 +1,5 @@
 /**
-* @file test_machine.c
+ * @file test_machine.c
  * @brief Test des implémentations de machine.h / machine.c
  * @author Alexandre SBEGHEN
  * @date 2026-06-24
