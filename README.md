@@ -23,7 +23,7 @@ mémoire infinie, d’un registre unique, et d’une unité arithmétique et log
 un entier, ou de le comparer à zéro.
 
 <p align="center">
-    <img style="mix-blend-mode: difference;" src="assets/images/schema_machine_ram.png" alt="Schéma de la machine RAM" width="350">
+    <img src="assets/images/schema_machine_ram.png" alt="Schéma de la machine RAM" width="350">
 </p>
 
 Cette machine est équipée du jeu d'instructions suivant :
@@ -43,7 +43,7 @@ Cette machine est équipée du jeu d'instructions suivant :
 
 Une fois compilé, le programme est représenté sous la forme d'un tableau de N lignes et 2 colonnes. La première
 colonne contient l'instruction à exécuter, et la seconde son opérande éventuel. Chaque valeur est un entier signé
-sur 32 bits. Si l'instruction ne prend pas d'opérande, la seconde colonne vaut `0` et est ignorée.
+sur 32 bits. Si l'instruction ne prend pas d'opérande, la seconde colonne est ignorée.
 
 Le tableau suivant récapitule les instructions du jeu d'instructions de la machine RAM, avec pour chacune son code
 hexadécimal, la présence ou non d'un opérande, et son équivalent assembleur correspondant.
